@@ -21,7 +21,6 @@ services:
     volumes:
       - "./logs:/logs"
     ports:
-      - "8072:80"
       - "8073:443"
     networks:
       - net
