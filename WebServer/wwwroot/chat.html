@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Чат</title>
+</head>
+<body>
+    <a href="/index.html">
+        <b>Index  </b>
+    </a>
+    <a href="history.html">
+        <b>History for last 10 minutes  </b>
+    </a>
+    <a href="swagger/index.html">
+        <b>Swagger</b>
+    </a>
+    <div id="chat"></div>
+    <script src="js/signalr/dist/browser/signalr.min.js"></script>
+    <script>
+        const hubConnection = new signalR.HubConnectionBuilder()
+            .withUrl("/chat")
+            .build();
+
+        hubConnection.on('Message', function (message) {
+
+            let elem = document.createElement("p");
+            elem.appendChild(document.createTextNode(message));
+
+            document.getElementById("chat").appendChild(elem);
+
+        });
+        hubConnection.start();
+    </script>
+</body>
+</html>
